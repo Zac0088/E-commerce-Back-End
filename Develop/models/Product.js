@@ -11,7 +11,7 @@ Product.init(
   {
     // define columns
     id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -27,12 +27,12 @@ Product.init(
         isDecimal: true,
       },
       stock: {
-        type: DataTypes.INTERGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         defualtValue: (10),
       },
       category_id: {
-        type: DataTypes.INTERGER,
+        type: DataTypes.INTEGER,
         references: {
           model: 'category',
           key: 'id',
