@@ -52,12 +52,45 @@ router.post('/', (req, res) => {
   });
 });
 
+// update a tag's name by its `id` value
 router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+  Tag.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(data => {
+    if (!data) {
+      res.status(404).json({ message:'Tag not found for this ID'});
+      return;
+    }
+    res.json(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
+// delete on tag by its `id` value
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+  Tag.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(data => {
+    if (!data){
+      res.status(404).json({ message: 'Tag not found for this Id'});
+      return;
+    }
+    res.json(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+  
 });
 
 module.exports = router;
